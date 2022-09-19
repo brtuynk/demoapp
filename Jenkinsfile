@@ -21,7 +21,7 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    sh 'docker pull beratuyanik/helloworld:latest'
+                    sh 'sudo docker pull beratuyanik/helloworld:latest'
                 }
             }
         }
