@@ -21,7 +21,6 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    sh "docker login -u beratuyanik -p berat5745"
                     sh 'docker pull beratuyanik/helloworld:latest'
                 }
             }
