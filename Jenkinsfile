@@ -37,8 +37,9 @@ pipeline {
         }
         stage('Deploy App on K8S') {
             agent {
-                label deploy
+                label deploy 
             }
+            
             steps {
                 sh 'kubectl apply -f myweb.yaml'
                 }
