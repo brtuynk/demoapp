@@ -28,9 +28,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pwd', usernameVariable: 'uname')]) {
-                        sh "docker login -u ${uname} -p ${pwd}"
-                    }
+                    
+                    sh "docker login -u beratuyanik -p berat5745"
                     sh 'docker push beratuyanik/helloworld:latest'
                 }
             }
@@ -39,7 +38,7 @@ pipeline {
             agent {
                 label deploy 
             }
-            
+
             steps {
                 sh 'kubectl apply -f myweb.yaml'
                 }
