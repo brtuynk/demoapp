@@ -18,13 +18,6 @@ pipeline {
                 sh "./mvnw test"
             }
         }
-        stage('Pull Docker Image') {
-            steps {
-                script {
-                    sh 'sudo docker pull beratuyanik/helloworld:latest'
-                }
-            }
-        }
         stage('Deploy App on K8S') {
             agent {
                 label deploy 
