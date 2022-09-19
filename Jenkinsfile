@@ -18,13 +18,30 @@ pipeline {
                 sh "./mvnw test"
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "echo "berat5745" | docker login --username beratuyanik --password-stdin"
+                    sh 'sudo docker build -t beratuyanik/helloworld:latest .'
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    
+                    sh "echo "berat5745" | docker login --username beratuyanik --password-stdin"
+                    sh 'docker push beratuyanik/helloworld:latest'
+                }
+            }
+        }
         stage('Deploy App on K8S') {
             agent {
-                label agentLabel 
+                label deploy 
             }
 
             steps {
-                sh 'kubectl get pods'
+                sh 'kubectl apply -f myweb.yaml'
                 }
         }
     }

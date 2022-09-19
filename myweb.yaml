@@ -33,9 +33,6 @@ spec:
           containerPort: 8080
           protocol: TCP
         name: myweb
-        env:
-        - name: BUILD_DATE
-          value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
 ---
 apiVersion: v1
 kind: Service
@@ -58,16 +55,13 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata: 
+  annotations:  
+    nginx.ingress.kubernetes.io/rewrite-target: /
   name: myweb
   namespace: myweb
 spec:
-  defaultBackend:
-    service:
-      name: myweb
-      port:
-        number: 32223
   rules:
-  - host: ip-172-31-29-69
+  - host: berat.feherconstruction.com
     http:
       paths:
       - backend:
