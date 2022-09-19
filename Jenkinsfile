@@ -21,6 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh "docker login -u beratuyanik -p berat5745"
                     sh 'sudo docker build -t beratuyanik/helloworld:latest .'
                 }
             }
