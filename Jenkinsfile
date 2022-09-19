@@ -36,12 +36,11 @@ pipeline {
             }
         }
         stage('Deploy App on K8S') {
+            agent {
+                label deploy
+            }
             steps {
-                script {
-                    withKubeConfig([credentialsId: 'mykubeconfig']) {
-                        sh 'sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" myweb.yaml'
-                        sh 'kubectl apply -f myweb.yaml'
-                    }
+                sh 'kubectl apply -f myweb.yaml'
                 }
             }
         }

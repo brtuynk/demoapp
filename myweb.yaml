@@ -67,7 +67,7 @@ spec:
       port:
         number: 32223
   rules:
-  - host: myweb-40-68-140-105.nip.io
+  - host: ip-172-31-29-69
     http:
       paths:
       - backend:
