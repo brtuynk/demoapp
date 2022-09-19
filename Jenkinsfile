@@ -20,11 +20,11 @@ pipeline {
         }
         stage('Deploy App on K8S') {
             agent {
-                label deploy 
+                label agentLabel 
             }
 
             steps {
-                sh 'kubectl apply -f myweb.yaml'
+                sh 'kubectl get pods'
                 }
         }
     }
