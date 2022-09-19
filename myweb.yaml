@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myweb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myweb
+  name: myweb
+  namespace: myweb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myweb
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - image: 'beratuyanik/helloworld:latest'
+        imagePullPolicy: Always
+        ports:
+        - name: myweb
+          containerPort: 8080
+          protocol: TCP
+        name: myweb
+        env:
+        - name: BUILD_DATE
+          value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: myweb
+  name: myweb
+  namespace: myweb
+spec:
+  selector:
+    app: myweb
+  type: NodePort
+  ports:
+  - nodePort: 32223
+    name: http
+    protocol: TCP
+    targetPort: 8080
+    port: 80
+--- 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: myweb
+  namespace: myweb
+spec:
+  defaultBackend:
+    service:
+      name: myweb
+      port:
+        number: 32223
+  rules:
+  - host: myweb-40-68-140-105.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: myweb
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
