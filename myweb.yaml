@@ -25,9 +25,9 @@ spec:
       labels:
         app: myweb
     spec:
-      imagePullPolicy: Always
       containers:
       - image: 'beratuyanik/helloworld:latest'
+        imagePullPolicy: Always
         ports:
         - name: myweb
           containerPort: 8080
