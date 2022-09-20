@@ -21,7 +21,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "echo "berat5745" | docker login --username beratuyanik --password-stdin"
                     sh 'sudo docker build -t beratuyanik/helloworld:latest .'
                 }
             }
@@ -29,9 +28,10 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    
-                    sh "echo "berat5745" | docker login --username beratuyanik --password-stdin"
-                    sh 'docker push beratuyanik/helloworld:latest'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pwd', usernameVariable: 'uname')]) {
+                        sh "docker login -u $uname -p $pwd"
+                        sh 'docker push beratuyanik/helloworld:latest'
+                    }
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
             agent {
                 label deploy 
             }
-
+            
             steps {
                 sh 'kubectl apply -f myweb.yaml'
                 }
