@@ -16,4 +16,9 @@ public class HelloController {
         return "Hello World!\n";
     }
 
+    @GetMapping("/vodafone")
+    public String index3() {
+        return "Merhaba Vodafone ben Berat UYANIK.\n";
+    }
+
 }
