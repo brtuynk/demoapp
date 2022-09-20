@@ -12,7 +12,6 @@ metadata:
   namespace: myweb
 spec:
   replicas: 3
-  imagePullPolicy: Always
   selector:
     matchLabels:
       app: myweb
@@ -26,9 +25,9 @@ spec:
       labels:
         app: myweb
     spec:
+      imagePullPolicy: Always
       containers:
       - image: 'beratuyanik/helloworld:latest'
-        imagePullPolicy: Always
         ports:
         - name: myweb
           containerPort: 8080
