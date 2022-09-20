@@ -21,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'sudo docker build -t beratuyanik/helloworld:latest .'
+                    sh ' docker build -t beratuyanik/helloworld:latest .'
                 }
             }
         }
