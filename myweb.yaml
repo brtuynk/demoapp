@@ -12,6 +12,7 @@ metadata:
   namespace: myweb
 spec:
   replicas: 3
+  imagePullPolicy: Always
   selector:
     matchLabels:
       app: myweb
