@@ -49,3 +49,26 @@ Shared URL: http://berat.feherconstruction.com/hello
 
 * nginx ingress controller is used. Because it is managing/controlling and welcoming request traffic from outside, and then, transmits requests to the services in cluster.
 * myweb service has 3 replicas for experiencing the load balancing feature.
+
+
+
+## Some Screenshots:
+
+* Jenkins Pipeline:
+![JenkinsPipline](https://github.com/brtuynk/demoapp/blob/master/images/jenkinsPipline.png)
+
+
+* GitHub Pepo Webhook:
+![Webhook](https://github.com/brtuynk/demoapp/blob/master/images/webhook.png)
+
+
+* Pipeline Dashboard Auto-triggering View after Git Push action:
+![trigger](https://github.com/brtuynk/demoapp/blob/master/images/trigger.png)
+
+
+* ```kubectl get nodes -A```, ```kubectl get svc -A```, ```kubectl get pods -A```
+![k8s](https://github.com/brtuynk/demoapp/blob/master/images/k8s.png)
+
+
+* The spring boot app (http://berat.feherconstruction.com/hello):
+![hello](https://github.com/brtuynk/demoapp/blob/master/images/hello.png)
